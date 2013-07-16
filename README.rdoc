@@ -1,3 +1,11 @@
+
 Welcome to Reservester Web Apps
 This is Lab for Startup Institute
 still on progress
+
+Reservester web app similar like Open Table web app 
+Using Ruby on Rails
+Testing with Cucumber
+
+
+
