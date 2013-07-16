@@ -1,25 +1,71 @@
 <p id="notice"><%= notice %></p>
 
+<table>
+  <tr>
+    <td>
+    <p>
+      <b>Name:</b>
+      <%= @restaurant.name %>
+    </p>
+
+    <p>
+      <b>Description:</b>
+      <%= @restaurant.description %>
+    </p>
+
+    <p>
+      <b>Street:</b>
+      <%= @restaurant.street %>
+    </p>
+
+    <p>
+      <b>City:</b>
+      <%= @restaurant.city %>
+    </p>
+
+    <p>
+      <b>State:</b>
+      <%= @restaurant.state %>
+    </p>
+
+    <p>
+      <b>Phone:</b>
+      <%= @restaurant.phone %>
+    </p>
+
+    <p>
+        <b>Category:</b><br/>
+        <% @restaurant.categories.each do |c| %>
+            <%= link_to c.name , category_path(c) %><br/>
+        <% end %>
+      </p>
+    <p>
+      <b>Picture:</b>
+      <%= image_tag(@restaurant.image_url(:masthead).to_s) if @restaurant.image? %>
+    </p>
+
+    <p>
+      <b>Phone:</b>
+      <%= @restaurant.menu %>
+    </p>
+    </td>
+  </tr>
+  <tr>
+    <% unless owner_signed_in? %>
+    <%= link_to 'Make Reservation', new_restaurant_reservation_path(@restaurant.id) %>
+    <% end %>
+  </tr>
+</table>
+
+<% if owner_signed_in? %>
+    <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>  |
+    <%= link_to 'Show All Reservation', restaurant_reservations_path(@restaurant.id) %>
+<% end %>
 <p>
-  <b>Name:</b>
-  <%= @restaurant.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @restaurant.description %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @restaurant.address %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @restaurant.phone %>
-</p>
-
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>
+</p>
+
+<h3><%= @restaurant.name %> Map Location</h3>
+<p>
+  <%= gmaps({ 'map_options' => {'auto_zoom' => false, 'zoom' => 17 }, 'markers' => {'data' => @json }}) %>
+</p>

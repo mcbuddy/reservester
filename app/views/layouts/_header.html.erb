@@ -1,0 +1,35 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to "Restaurant Reservester", root_path, class:"brand" %>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><%= link_to "Browse Restaurant", restaurants_path %></li>
+          <li><%= link_to "Category", categories_path %></li>
+          <li><%= link_to "About", page_about_path %></li>
+        </ul>
+        <ul class="nav pull-right">
+          <form class="navbar-search">
+            <li><input type="text" class="search-query" placeholder="Search"></li>
+          </form>
+          <% if owner_signed_in? %>
+              <li><%= link_to "Edit Profile", edit_owner_registration_path %></li>
+              <li><%= link_to "Logout", destroy_owner_session_path , method: :delete %></li>
+          <% elsif user_signed_in? %>
+              <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path , :method => :delete %></li>
+          <% else %>
+              <li><%= link_to "User Login", new_user_session_path %></li>  or
+              <li><%= link_to "Owner Login", new_owner_session_path %></li>
+              <li><%= link_to "Register", new_owner_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
