@@ -7,5 +7,5 @@ Reservester web app similar like Open Table web app
 Using Ruby on Rails
 Testing with Cucumber
 
-
+visit http://restaurant-reserve.herokuapp.com/ to check how the apps works.
 
